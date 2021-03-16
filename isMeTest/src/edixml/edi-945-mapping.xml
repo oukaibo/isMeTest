@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.3.xsd">
+	<medi:description name="APPLE Order" version="1.0" />
+
+	<medi:delimiters segment="&#10;" field="*" component="^"
+		sub-component="~" />
+	<medi:segments xmltag="EDI945">
+
+		<medi:segment segcode="ISA" xmltag="isa" truncatable='true'>
+			<medi:field xmltag="authorization-information-code" />
+			<medi:field xmltag="authorization-information" />
+			<medi:field xmltag="security-information-code" />
+			<medi:field xmltag="security-information" />
+			<medi:field xmltag="sender-structure-code" />
+			<medi:field xmltag="sender-identification-code" />
+			<medi:field xmltag="receiver-structure-code" />
+			<medi:field xmltag="receiver-identification-code" />
+			<medi:field xmltag="interchange-date" />
+			<medi:field xmltag="interchange-time" />
+			<medi:field xmltag="standards-identifier-code" />
+			<medi:field xmltag="interchange-version-code" />
+			<medi:field xmltag="control-number" />
+			<medi:field xmltag="acknowledgment-requested" />
+			<medi:field xmltag="usage-indicator-code" />
+			<medi:field xmltag="compoment-element-separator" />
+		</medi:segment>
+
+		<medi:segment segcode="GS" xmltag="gs" truncatable='true'>
+			<medi:field xmltag="functional-identifier-code" />
+			<medi:field xmltag="sender-code" />
+			<medi:field xmltag="receiver-code" />
+			<medi:field xmltag="date" />
+			<medi:field xmltag="time" />
+			<medi:field xmltag="assign-number" />
+			<medi:field xmltag="responssible-agency-code" />
+			<medi:field xmltag="identifier-code" />
+		</medi:segment>
+
+		<medi:segmentGroup xmltag="ediItem" maxOccurs="-1"
+			minOccurs="0">
+			<medi:segment segcode="ST" xmltag="st" maxOccurs="-1">
+				<medi:field xmltag="transaction-code" />
+				<medi:field xmltag="transaction-number" />
+			</medi:segment>
+
+			<medi:segment segcode="W06" xmltag="w06" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="reporting-code" />
+				<medi:field xmltag="depositor-order-number" />
+				<medi:field xmltag="date" />
+				<medi:field xmltag="order-number" />
+				<medi:field xmltag="shipment-identification-number" />
+			</medi:segment>
+
+			<medi:segment segcode="N1" xmltag="n101" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="entity-code" />
+				<medi:field xmltag="name" />
+				<medi:field xmltag="structure-code" truncatable='true'/>
+				<medi:field xmltag="other-code" truncatable='true'/>
+			</medi:segment>
+
+			<medi:segment segcode="N9" xmltag="n901" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="fixed-value" />
+				<medi:field xmltag="reference-num" />
+				<medi:field xmltag="fixed-value1" truncatable='true' />
+				<medi:field xmltag="fixed-value2" truncatable='true' />
+				<medi:field xmltag="fixed-value3" truncatable='true' />
+				<medi:field xmltag="fixed-value4" truncatable='true' />
+				<medi:field xmltag="web-order" truncatable='true' />
+			</medi:segment>
+
+			<medi:segment segcode="G62" xmltag="g62" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="date-type" />
+				<medi:field xmltag="date" />
+			</medi:segment>
+			<medi:segmentGroup xmltag="childItem" maxOccurs="-1"
+				minOccurs="0">
+				<medi:segment segcode="LX" xmltag="lx" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="assigned-number" />
+				</medi:segment>
+
+				<medi:segment segcode="MAN" xmltag="man" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="sender" />
+					<medi:field xmltag="mark" />
+					<medi:field xmltag="waybill-number" />
+					<medi:field xmltag="fixed-value" />
+					<medi:field xmltag="number" />
+					<medi:field xmltag="fixed-number" />
+				</medi:segment>
+
+				<medi:segment segcode="W12" xmltag="w12" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="status-code" />
+					<medi:field xmltag="fixed-value1" />
+					<medi:field xmltag="quantity" />
+					<medi:field xmltag="fixed-value2" />
+					<medi:field xmltag="unit" />
+					<medi:field xmltag="fixed-value3" />
+					<medi:field xmltag="seller-code" />
+					<medi:field xmltag="part-number" />
+					<medi:field xmltag="fixed-value4" />
+					<medi:field xmltag="weight" />
+					<medi:field xmltag="weight-type" />
+					<medi:field xmltag="weight-unit" />
+					<medi:field xmltag="actual-weight" />
+					<medi:field xmltag="actual-type" />
+					<medi:field xmltag="actual-unit" />
+					<medi:field xmltag="fixed-value5" />
+					<medi:field xmltag="fixed-value6" />
+					<medi:field xmltag="fixed-value7" />
+					<medi:field xmltag="fixed-value8" />
+					<medi:field xmltag="fixed-value9" />
+					<medi:field xmltag="package-type" />
+					<medi:field xmltag="pack-nmber" />
+				</medi:segment>
+
+				<medi:segment segcode="G69" xmltag="g69" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="good-desc" />
+				</medi:segment>
+
+				<medi:segment segcode="N9" xmltag="n902" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="fixed-value" />
+					<medi:field xmltag="reference-num" />
+					<medi:field xmltag="fixed-value1" truncatable='true' />
+					<medi:field xmltag="fixed-value2" truncatable='true' />
+					<medi:field xmltag="fixed-value3" truncatable='true' />
+					<medi:field xmltag="fixed-value4" truncatable='true' />
+					<medi:field xmltag="web-order" truncatable='true' />
+				</medi:segment>
+
+				<medi:segment segcode="N1" xmltag="n102" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="entity-code" />
+					<medi:field xmltag="name" />
+					<medi:field xmltag="structure-code" />
+					<medi:field xmltag="other-code" />
+				</medi:segment>
+
+				<medi:segment segcode="N2" xmltag="n2" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="company" />
+					<medi:field xmltag="name" truncatable='true'/>
+				</medi:segment>
+
+				<medi:segment segcode="N3" xmltag="n3" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="street" />
+					<medi:field xmltag="city" />
+				</medi:segment>
+
+				<medi:segment segcode="N4" xmltag="n4" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="city-name" />
+					<medi:field xmltag="province" />
+					<medi:field xmltag="post-code" />
+					<medi:field xmltag="country-code" />
+					<medi:field xmltag="area-code" />
+					<medi:field xmltag="area" />
+				</medi:segment>
+
+				<medi:segment segcode="PER" xmltag="per" maxOccurs="-1"
+					minOccurs="0" truncatable='true'>
+					<medi:field xmltag="receiver-code" />
+					<medi:field xmltag="fixed-value1" />
+					<medi:field xmltag="tel-code" />
+					<medi:field xmltag="tel-number" />
+					<medi:field xmltag="fixed-value2" />
+					<medi:field xmltag="fixed-value3" />
+					<medi:field xmltag="code" />
+					<medi:field xmltag="city" />
+					<medi:field xmltag="country" />
+				</medi:segment>
+			</medi:segmentGroup>
+
+			<medi:segment segcode="W03" xmltag="w03" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="total-package" />
+				<medi:field xmltag="total-weight" />
+				<medi:field xmltag="weight-unit" />
+				<medi:field xmltag="total-volume" />
+				<medi:field xmltag="volume-unit" />
+				<medi:field xmltag="quantity" />
+				<medi:field xmltag="fixed-value" />
+			</medi:segment>
+
+			<medi:segment segcode="SE" xmltag="se" maxOccurs="-1"
+				minOccurs="0" truncatable='true'>
+				<medi:field xmltag="number-of-included-segment" />
+				<medi:field xmltag="transaction-set-control-number" />
+			</medi:segment>
+		</medi:segmentGroup>
+
+		<medi:segment segcode="GE" xmltag="ge" maxOccurs="-1"
+			minOccurs="0" truncatable='true'>
+			<medi:field xmltag="total-transaction-number" />
+			<medi:field xmltag="group-control-number" />
+		</medi:segment>
+
+		<medi:segment segcode="IEA" xmltag="iea" maxOccurs="-1"
+			minOccurs="0" truncatable='true'>
+			<medi:field xmltag="group-number" />
+			<medi:field xmltag="interchange-control-numebr" />
+		</medi:segment>
+	</medi:segments>
+</medi:edimap> 

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+	xmlns:csv="http://www.milyn.org/xsd/smooks/csv-1.2.xsd" xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.2.xsd"
+	xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd"
+	xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd" xmlns:json="http://www.milyn.org/xsd/smooks/json-1.2.xsd">
+	
+	<edi:reader mappingModel="edi-214-mapping.xml"/>
+
+	<jb:bean beanId="edi214" class="com.kerrier.koms.edi.api.wms.model.apple.EDI214"
+		createOnElement="EDI214">
+		<jb:wiring property="isa" beanIdRef="isa" />
+		<jb:wiring property="gs" beanIdRef="gs" />
+		<jb:wiring property="itemList" beanIdRef="item" />
+		<jb:wiring property="ge" beanIdRef="ge" />
+		<jb:wiring property="iea" beanIdRef="iea" />
+	</jb:bean>
+
+	<jb:bean beanId="isa" class="com.kerrier.koms.edi.api.wms.model.apple.ISA" createOnElement="${edi214}/isa">
+		<jb:value property="authorizationInformationCode" data="#/authorization-information-code" />
+		<jb:value property="authorizationInformation" data="#/authorization-information" />
+		<jb:value property="securityInformationCode" data="#/security-information-code" />
+		<jb:value property="securityInformation" data="#/security-information" />
+		<jb:value property="senderStructureCode" data="#/sender-structure-code" />
+		<jb:value property="senderIdentificationCode" data="#/sender-identification-code" />
+		<jb:value property="receiverStructureCode" data="#/receiver-structure-code" />
+		<jb:value property="receiverIdentificationCode" data="#/receiver-identification-code" />
+		<jb:value property="interchangeDate" data="#/interchange-date" />
+		<jb:value property="interchangeTime" data="#/interchange-time" />
+		<jb:value property="standardsIdentifierCode" data="#/standards-identifier-code" />
+		<jb:value property="interchangeVersionCode" data="#/interchange-version-code" />
+		<jb:value property="controlNumber" data="#/control-number" />
+		<jb:value property="acknowledgmentRequested" data="#/acknowledgment-requested" />
+		<jb:value property="usageIndicatorCode" data="#/usage-indicator-code" />
+		<jb:value property="compomentElementSeparator" data="#/compoment-element-separator" />
+	</jb:bean>
+
+	<jb:bean beanId="gs" class="com.kerrier.koms.edi.api.wms.model.apple.GS" createOnElement="${edi214}/gs">
+		<jb:value property="functionalIdentifierCode" data="#/functional-identifier-code" />
+		<jb:value property="senderCode" data="#/sender-code" />
+		<jb:value property="receiverCode" data="#/receiver-code" />
+		<jb:value property="date" data="#/date" />
+		<jb:value property="time" data="#/time" />
+		<jb:value property="assignNumber" data="#/assign-number" />
+		<jb:value property="responssibleAgencyCode" data="#/responssible-agency-code" />
+		<jb:value property="identifierCode" data="#/identifier-code" />
+	</jb:bean>
+
+	<jb:bean beanId="item" class="java.util.ArrayList" createOnElement="EDI214">
+		<jb:wiring beanIdRef="ediItem" />
+	</jb:bean>
+
+	<jb:bean beanId="ediItem" class="com.kerrier.koms.edi.api.wms.model.apple.EDI214Item" createOnElement="edi-item">
+		<jb:wiring property="st" beanIdRef="st" />
+		<jb:wiring property="b10" beanIdRef="b10" />
+		<jb:wiring property="l11" beanIdRef="l11" />
+		<jb:wiring property="n1" beanIdRef="n1" />
+		<jb:wiring property="lx" beanIdRef="lx" />
+		<jb:wiring property="at7" beanIdRef="at7" />
+		<jb:wiring property="ms1" beanIdRef="ms1" />
+		<jb:wiring property="ms2" beanIdRef="ms2" />
+		<jb:wiring property="q7" beanIdRef="q7" />
+		<jb:wiring property="k1" beanIdRef="k1" />
+		<jb:wiring property="at8" beanIdRef="at8" />
+		<jb:wiring property="cd3" beanIdRef="cd3" />
+		<jb:wiring property="nm1" beanIdRef="nm1" />
+		<jb:wiring property="se" beanIdRef="se" />
+	</jb:bean>
+
+	<jb:bean beanId="st" class="com.kerrier.koms.edi.api.wms.model.apple.ST" createOnElement="${ediItem}/st">
+		<jb:value property="transactionCode" data="#/transaction-code" />
+		<jb:value property="transactionNumber" data="#/transaction-number" />
+	</jb:bean>
+
+	<jb:bean beanId="b10" class="com.kerrier.koms.edi.api.wms.model.apple.B10" createOnElement="${ediItem}/b10">
+		<jb:value property="referenceInformation" data="#/reference-information" />
+		<jb:value property="shippmnetIdentificationNumber" data="#/shippmnet-identification-number" />
+		<jb:value property="standardCarrierAlphaCode" data="#/standard-carrier-alpha-code" />
+	</jb:bean>
+
+	<jb:bean beanId="l11" class="com.kerrier.koms.edi.api.wms.model.apple.L11" createOnElement="${ediItem}/l11">
+		<jb:value property="referenceIdentification" data="#/reference-identification" />
+		<jb:value property="referenceIdentificationCode" data="#/reference-identification-code" />
+		<jb:value property="description" data="#/description" />
+	</jb:bean>
+
+	<jb:bean beanId="lx" class="com.kerrier.koms.edi.api.wms.model.apple.LX" createOnElement="${ediItem}/lx">
+		<jb:value property="entityCode" data="#/entity-code" />
+		<jb:value property="name" data="#/name" />
+		<jb:value property="structureCode" data="#/structure-code" />
+		<jb:value property="otherCode" data="#/other-code" />
+	</jb:bean>
+
+	<jb:bean beanId="lx" class="com.kerrier.koms.edi.api.wms.model.apple.LX" createOnElement="${ediItem}/lx">
+		<jb:value property="assignedNumber" data="#/assigned-number" />
+	</jb:bean>
+
+	<jb:bean beanId="at7" class="com.kerrier.koms.edi.api.wms.model.apple.AT7" createOnElement="${ediItem}/at7">
+		<jb:value property="shipmentStatusCode" data="#/shipment-status-code" />
+		<jb:value property="statusCode" data="#/status-code" />
+		<jb:value property="appointmentStatusCode" data="#/appointment-status-code" />
+		<jb:value property="statusOrReasonCode" data="#/status-or-reason-code" />
+		<jb:value property="date" data="#/date" />
+		<jb:value property="time" data="#/time" />
+		<jb:value property="timeCode" data="#/time-code" />
+	</jb:bean>
+
+	<jb:bean beanId="ms1" class="com.kerrier.koms.edi.api.wms.model.apple.MS1" createOnElement="${ediItem}/ms1">
+		<jb:value property="cityName" data="#/city-name" />
+		<jb:value property="provinceCode" data="#/province-code" />
+		<jb:value property="countryCode" data="#/country-code" />
+		<jb:value property="longitudeCode" data="#/longitude-code" />
+		<jb:value property="latitudeCode" data="#/latitude-code" />
+	</jb:bean>
+
+	<jb:bean beanId="ms2" class="com.kerrier.koms.edi.api.wms.model.apple.MS2" createOnElement="${ediItem}/ms2">
+		<jb:value property="standardCarrierAlphaCode" data="#/standard-carrier-alpha-code" />
+		<jb:value property="equipmentNumber" data="#/equipment-number" />
+		<jb:value property="equipmentNumberCheckDigit" data="#/equipment-number-check-digit" />
+	</jb:bean>
+
+	<jb:bean beanId="q7" class="com.kerrier.koms.edi.api.wms.model.apple.Q7" createOnElement="${ediItem}/q7">
+		<jb:value property="conditionCode" data="#/condition-code" />
+		<jb:value property="packageFormCode" data="#/package-form-code" />
+		<jb:value property="ladingQuantity" data="#/lading-quantity" />
+	</jb:bean>
+
+	<jb:bean beanId="k1" class="com.kerrier.koms.edi.api.wms.model.apple.K1" createOnElement="${ediItem}/k1">
+		<jb:value property="freeFormMessage" data="#/free-form-message" />
+		<jb:value property="freeFormMessageMore" data="#/free-form-message_more" />
+	</jb:bean>
+
+	<jb:bean beanId="at8" class="com.kerrier.koms.edi.api.wms.model.apple.AT8" createOnElement="${ediItem}/at8">
+		<jb:value property="typeWeightCode" data="#/type-weight-code" />
+		<jb:value property="weightUnitCode" data="#/weight-unit-code" />
+		<jb:value property="weight" data="#/weight" />
+	</jb:bean>
+
+	<jb:bean beanId="cd3" class="com.kerrier.koms.edi.api.wms.model.apple.CD3" createOnElement="${ediItem}/cd3">
+		<jb:value property="typeWeightCode" data="#/type-weight-code" />
+		<jb:value property="weight" data="#/weight" />
+		<jb:value property="zone" data="#/zone" />
+		<jb:value property="serviceStandard" data="#/service-standard" />
+		<jb:value property="serviceLevelCode" data="#/service-level-code" />
+		<jb:value property="pickUpOrDeliveryCode" data="#/pick-up-or-delivery-code" />
+		<jb:value property="rateCode" data="#/rate-code" />
+		<jb:value property="rateCharge" data="#/rate-charge" />
+		<jb:value property="transportationServiceLevelCode" data="#/transportation-service-level-code" />
+		<jb:value property="billingServiceLevelCode" data="#/billing-service-level-code" />
+		<jb:value property="paymentMethodCode" data="#/payment-method-code" />
+		<jb:value property="countryCode" data="#/country-code" />
+	</jb:bean>
+
+	<jb:bean beanId="nm1" class="com.kerrier.koms.edi.api.wms.model.apple.NM1" createOnElement="${ediItem}/nm1">
+		<jb:value property="entityIdentifierCode" data="#/entity-identifier-code" />
+		<jb:value property="entityTypeCode" data="#/entity-type-code" />
+		<jb:value property="nameLast" data="#/name-last" />
+		<jb:value property="nameFirst" data="#/name-first" />
+	</jb:bean>
+
+	<jb:bean beanId="se" class="com.kerrier.koms.edi.api.wms.model.apple.SE" createOnElement="${ediItem}/se">
+		<jb:value property="numberOfIncludedSegment" data="#/number-of-included-segment" />
+		<jb:value property="transactionSetControlNumber" data="#/transaction-set-control-number" />
+	</jb:bean>
+
+	<jb:bean beanId="ge" class="com.kerrier.koms.edi.api.wms.model.apple.GE" createOnElement="${edi214}/ge">
+		<jb:value property="totalTransactionNumber" data="#/total-transaction-number" />
+		<jb:value property="groupControlNumber" data="#/group-control-number" />
+	</jb:bean>
+
+	<jb:bean beanId="iea" class="com.kerrier.koms.edi.api.wms.model.apple.IEA" createOnElement="${edi214}/iea">
+		<jb:value property="groupNumber" data="#/group-number" />
+		<jb:value property="interchangeControlNumebr" data="#/interchange-control-numebr" />
+	</jb:bean>
+
+</smooks-resource-list>

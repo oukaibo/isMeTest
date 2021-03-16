@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+	xmlns:csv="http://www.milyn.org/xsd/smooks/csv-1.2.xsd" xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.2.xsd"
+	xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd"
+	xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd" xmlns:json="http://www.milyn.org/xsd/smooks/json-1.2.xsd">
+
+	<edi:reader mappingModel="edi-204-mapping.xml" />
+
+	<jb:bean beanId="edi204"
+		class="com.kerrier.koms.edi.api.wms.model.disney.EDI204"
+		createOnElement="EDI204">
+		<jb:wiring property="isa" beanIdRef="isa" />
+		<jb:wiring property="gs" beanIdRef="gs" />
+		<jb:wiring property="items" beanIdRef="itemList" />
+		<jb:wiring property="ge" beanIdRef="ge" />
+		<jb:wiring property="iea" beanIdRef="iea" />
+	</jb:bean>
+
+	<jb:bean beanId="isa" class="com.kerrier.koms.edi.api.wms.model.disney.ISA"
+		createOnElement="${edi204}/isa">
+		<jb:value property="authorizationInformationCode" data="#/authorization-information-code" />
+		<jb:value property="authorizationInformation" data="#/authorization-information" />
+		<jb:value property="securityInformationCode" data="#/security-information-code" />
+		<jb:value property="securityInformation" data="#/security-information" />
+		<jb:value property="senderStructureCode" data="#/sender-structure-code" />
+		<jb:value property="senderIdentificationCode" data="#/sender-identification-code" />
+		<jb:value property="receiverStructureCode" data="#/receiver-structure-code" />
+		<jb:value property="receiverIdentificationCode" data="#/receiver-identification-code" />
+		<jb:value property="interchangeDate" data="#/interchange-date" />
+		<jb:value property="interchangeTime" data="#/interchange-time" />
+		<jb:value property="standardsIdentifierCode" data="#/standards-identifier-code" />
+		<jb:value property="interchangeVersionCode" data="#/interchange-version-code" />
+		<jb:value property="controlNumber" data="#/control-number" />
+		<jb:value property="acknowledgmentRequested" data="#/acknowledgment-requested" />
+		<jb:value property="usageIndicatorCode" data="#/usage-indicator-code" />
+		<jb:value property="compomentElementSeparator" data="#/compoment-element-separator" />
+	</jb:bean>
+
+	<jb:bean beanId="gs" class="com.kerrier.koms.edi.api.wms.model.disney.GS"
+		createOnElement="${edi204}/gs">
+		<jb:value property="functionalIdentifierCode" data="#/functional-identifier-code" />
+		<jb:value property="senderCode" data="#/sender-code" />
+		<jb:value property="receiverCode" data="#/receiver-code" />
+		<jb:value property="date" data="#/date" />
+		<jb:value property="time" data="#/time" />
+		<jb:value property="assignNumber" data="#/assign-number" />
+		<jb:value property="responssibleAgencyCode" data="#/responssible-agency-code" />
+		<jb:value property="identifierCode" data="#/identifier-code" />
+	</jb:bean>
+
+	<jb:bean beanId="itemList" class="java.util.ArrayList"
+		createOnElement="EDI204">
+		<jb:wiring beanIdRef="ediItem" />
+	</jb:bean>
+
+	<jb:bean beanId="ediItem"
+		class="com.kerrier.koms.edi.api.wms.model.disney.EDI204Item"
+		createOnElement="ediItem">
+		<jb:wiring property="st" beanIdRef="st" />
+		<jb:wiring property="b2" beanIdRef="b2" />
+		<jb:wiring property="b2a" beanIdRef="b2a" />
+		<jb:wiring property="l11" beanIdRef="l11" />
+		<jb:wiring property="g62" beanIdRef="g6201" />
+		<jb:wiring property="at5" beanIdRef="at5" />
+		<jb:wiring property="n7" beanIdRef="n7" />
+		<jb:wiring property="m7" beanIdRef="m7" />
+		<jb:wiring property="childItems" beanIdRef="childList" />
+		<jb:wiring property="l3" beanIdRef="l3" />
+		<jb:wiring property="se" beanIdRef="se" />
+	</jb:bean>
+
+	<jb:bean beanId="st" class="com.kerrier.koms.edi.api.wms.model.disney.ST"
+		createOnElement="${ediItem}/st">
+		<jb:value property="transactionCode" data="#/transaction-code" />
+		<jb:value property="transactionNumber" data="#/transaction-number" />
+	</jb:bean>
+
+	<jb:bean beanId="b2" class="com.kerrier.koms.edi.api.wms.model.disney.B2"
+		createOnElement="${ediItem}/b2">
+		<jb:value property="fixedValue1" data="#/fixed-value1" />
+		<jb:value property="carrierCode" data="#/carrier-code" />
+		<jb:value property="fixedValue2" data="#/fixed-value2" />
+		<jb:value property="orderNum" data="#/order-num" />
+		<jb:value property="fixedValue3" data="#/fixed-value3" />
+		<jb:value property="payCode" data="#/pay-code" />
+	</jb:bean>
+	
+	<jb:bean beanId="b2a" class="com.kerrier.koms.edi.api.wms.model.disney.B2A"
+		createOnElement="${ediItem}/b2a">
+		<jb:value property="code" data="#/code" />
+	</jb:bean>
+
+	<jb:bean beanId="l11" class="com.kerrier.koms.edi.api.wms.model.disney.L11"
+		createOnElement="${ediItem}/l11">
+		<jb:value property="number" data="#/number" />
+		<jb:value property="code" data="#/code" />
+		<jb:value property="tag" data="#/tag" />
+	</jb:bean>
+
+	<jb:bean beanId="g6201" class="com.kerrier.koms.edi.api.wms.model.disney.G62"
+		createOnElement="${ediItem}/g6201">
+		<jb:value property="dateCode" data="#/date-type" />
+		<jb:value property="date" data="#/date" />
+		<jb:value property="timeCode" data="#/time-code" />
+		<jb:value property="time" data="#/time" />
+		<jb:value property="tiemType" data="#/time-type" />
+	</jb:bean>
+	
+	<jb:bean beanId="at5" class="com.kerrier.koms.edi.api.wms.model.disney.AT5"
+		createOnElement="${ediItem}/at5">
+		<jb:value property="projectType" data="#/project-type" />
+		<jb:value property="at502" data="#/at502" />
+	</jb:bean>
+	
+	<jb:bean beanId="n7" class="com.kerrier.koms.edi.api.wms.model.disney.N7"
+		createOnElement="${ediItem}/n7">
+		<jb:value property="code" data="#/code" />
+		<jb:value property="number" data="#/number" />
+		<jb:value property="n703" data="#/n703" />
+		<jb:value property="n704" data="#/n704" />
+		<jb:value property="n705" data="#/n705" />
+		<jb:value property="n706" data="#/n706" />
+		<jb:value property="n707" data="#/n707" />
+		<jb:value property="n708" data="#/n708" />
+		<jb:value property="n709" data="#/n709" />
+		<jb:value property="n710" data="#/n710" />
+		<jb:value property="n711" data="#/n711" />
+		<jb:value property="n712" data="#/n712" />
+		<jb:value property="n713" data="#/n713" />
+		<jb:value property="n714" data="#/n714" />
+		<jb:value property="n715" data="#/n715" />
+		<jb:value property="n716" data="#/n716" />
+		<jb:value property="n717" data="#/n717" />
+		<jb:value property="n718" data="#/n718" />		
+		<jb:value property="n719" data="#/n719" />		
+		<jb:value property="n720" data="#/n720" />		
+		<jb:value property="n721" data="#/n721" />		
+		<jb:value property="n722" data="#/n722" />		
+	</jb:bean>
+	
+	<jb:bean beanId="m7" class="com.kerrier.koms.edi.api.wms.model.disney.M7"
+		createOnElement="${ediItem}/m7">
+		<jb:value property="m701" data="#/m701" />	
+	</jb:bean>
+
+	<jb:bean beanId="childList" class="java.util.ArrayList"
+		createOnElement="ediItem">
+		<jb:wiring beanIdRef="childItem" />
+	</jb:bean>
+
+	<jb:bean beanId="childItem"
+		class="com.kerrier.koms.edi.api.wms.model.disney.EDI204ChildItem"
+		createOnElement="childItem">
+		<jb:wiring property="s5" beanIdRef="s5" />
+		<jb:wiring property="g62" beanIdRef="g6202" />
+		<jb:wiring property="at8" beanIdRef="at8" />
+		<jb:wiring property="pld" beanIdRef="pld" />
+		<jb:wiring property="nteItems" beanIdRef="nteList" />
+		<jb:wiring property="n1" beanIdRef="n1" />
+		<jb:wiring property="n3" beanIdRef="n3" />
+		<jb:wiring property="n4" beanIdRef="n4" />
+		<jb:wiring property="oidItems" beanIdRef="oidList" />
+		<!-- <jb:wiring property="g61Items" beanIdRef="g61List" /> -->
+	</jb:bean>
+
+	<jb:bean beanId="s5" class="com.kerrier.koms.edi.api.wms.model.disney.S5"
+		createOnElement="${childItem}/s5">
+		<jb:value property="code" data="#/code" />
+		<jb:value property="reasonCode" data="#/reason-code" />
+		<jb:value property="weight" data="#/weight" />
+		<jb:value property="weightUnit" data="#/weight-unit" />
+		<jb:value property="quantity" data="#/quantity" />
+		<jb:value property="volumeCode" data="#/volume-code" />
+		<jb:value property="volume" data="#/volume" />
+		<jb:value property="volumeUnit" data="#/volume-unit" />
+	</jb:bean>
+
+	<jb:bean beanId="g6202" class="com.kerrier.koms.edi.api.wms.model.disney.G62"
+		createOnElement="${childItem}/g6202">
+		<jb:value property="dateCode" data="#/date-code" />
+		<jb:value property="date" data="#/date" />
+		<jb:value property="timeCode" data="#/time-code" />
+		<jb:value property="time" data="#/time" />
+		<jb:value property="tiemType" data="#/time-type" />
+	</jb:bean>
+
+	<jb:bean beanId="at8" class="com.kerrier.koms.edi.api.wms.model.disney.AT8"
+		createOnElement="${childItem}/at8">
+		<jb:value property="at801" data="#/at801" />
+		<jb:value property="at802" data="#/at802" />
+		<jb:value property="at803" data="#/at803" />
+		<jb:value property="quantity" data="#/quantity" />
+	</jb:bean>
+
+	<jb:bean beanId="pld" class="com.kerrier.koms.edi.api.wms.model.disney.PLD"
+		createOnElement="${childItem}/pld">
+		<jb:value property="platNumber" data="#/plat-number" />
+		<jb:value property="pld02" data="#/pld02" />
+	</jb:bean>
+	
+	<jb:bean beanId="nteList" class="java.util.ArrayList"
+		createOnElement="childItem">
+		<jb:wiring beanIdRef="nte" />
+	</jb:bean>
+
+	<jb:bean beanId="nte" class="com.kerrier.koms.edi.api.wms.model.disney.NTE"
+		createOnElement="nte">
+		<jb:value property="nte01" data="#/nte01" />
+		<jb:value property="nte02" data="#/nte02" />
+	</jb:bean>
+	
+	<jb:bean beanId="n1" class="com.kerrier.koms.edi.api.wms.model.disney.N1"
+		createOnElement="${childItem}/n1">
+		<jb:value property="type" data="#/type" />
+		<jb:value property="name" data="#/name" />
+		<jb:value property="code" data="#/code" />
+		<jb:value property="id" data="#/id" />
+	</jb:bean>
+	
+	<jb:bean beanId="n3" class="com.kerrier.koms.edi.api.wms.model.disney.N3"
+		createOnElement="${childItem}/n3">
+		<jb:value property="street" data="#/street" />
+		<jb:value property="city" data="#/city" />
+	</jb:bean>
+	
+	<jb:bean beanId="n4" class="com.kerrier.koms.edi.api.wms.model.disney.N4"
+		createOnElement="${childItem}/n4">
+		<jb:value property="cityName" data="#/city-name" />
+		<jb:value property="province" data="#/province" />
+		<jb:value property="postCode" data="#/post-code" />
+		<jb:value property="country" data="#/country" />
+	</jb:bean>
+
+	<jb:bean beanId="oidList" class="java.util.ArrayList"
+		createOnElement="childItem">
+		<jb:wiring beanIdRef="oidItem" />
+	</jb:bean>
+
+	<jb:bean beanId="oidItem" class="com.kerrier.koms.edi.api.wms.model.disney.OIDItem"
+		createOnElement="oidItem">
+		<jb:wiring property="oid" beanIdRef="oid" />
+		<jb:wiring property="l5" beanIdRef="l5" />	
+		<jb:wiring property="g61Items" beanIdRef="g61List" />	
+	</jb:bean>
+
+	<jb:bean beanId="oid" class="com.kerrier.koms.edi.api.wms.model.disney.OID"
+		createOnElement="${oidItem}/oid">
+		<jb:value property="fixedValue" data="#/fixed-value" />
+		<jb:value property="order" data="#/order" />
+	</jb:bean>
+	
+	<jb:bean beanId="l5" class="com.kerrier.koms.edi.api.wms.model.disney.L5"
+		createOnElement="${oidItem}/l5">
+		<jb:value property="l501" data="#/l501" />
+		<jb:value property="l502" data="#/l502" />
+		<jb:value property="l503" data="#/l503" />
+		<jb:value property="l504" data="#/l504" />
+		<jb:value property="l505" data="#/l505" />
+		<jb:value property="l505" data="#/l505" />
+		<jb:value property="packCode" data="#/pack-code" />
+	</jb:bean>
+	
+	<jb:bean beanId="g61List" class="java.util.ArrayList"
+		createOnElement="oidItem">
+		<jb:wiring beanIdRef="g61Item" />
+	</jb:bean>
+
+	<jb:bean beanId="g61Item" class="com.kerrier.koms.edi.api.wms.model.disney.G61Item"
+		createOnElement="${oidItem}/g61Item">
+		<jb:wiring property="g61" beanIdRef="g61" />
+		<jb:wiring property="l11" beanIdRef="l1101" />	
+	</jb:bean>
+
+	<jb:bean beanId="g61" class="com.kerrier.koms.edi.api.wms.model.disney.G61"
+		createOnElement="${g61Item}/g61">
+		<jb:value property="code" data="#/code" />
+		<jb:value property="name" data="#/name" />
+		<jb:value property="telCode" data="#/tel-code" />
+		<jb:value property="tel" data="#/tel" />
+		<jb:value property="fixedCode" data="#/fixed-code" />
+	</jb:bean>
+	
+	<jb:bean beanId="l1101" class="com.kerrier.koms.edi.api.wms.model.disney.L11"
+		createOnElement="${g61Item}/l1101">
+		<jb:value property="number" data="#/number" />
+		<jb:value property="code" data="#/code" />
+        <jb:value property="tag" data="#/tag" />
+	</jb:bean>
+
+	<jb:bean beanId="l3" class="com.kerrier.koms.edi.api.wms.model.disney.L3"
+		createOnElement="${ediItem}/l3">
+		<jb:value property="weight" data="#/weight" />
+		<jb:value property="weightType" data="#/weight-type" />
+		<jb:value property="freight" data="#/freight" />
+		<jb:value property="type" data="#/type" />
+		<jb:value property="totalPrice" data="#/total-price" />
+		<jb:value property="l306" data="#/l306" />
+		<jb:value property="l307" data="#/l307" />
+		<jb:value property="l308" data="#/l308" />
+		<jb:value property="l309" data="#/l309" />
+		<jb:value property="l310" data="#/l310" />
+		<jb:value property="quantity" data="#/quantity" />
+		<jb:value property="weightUnit" data="#/weight-unit" />
+	</jb:bean>
+
+	<jb:bean beanId="se" class="com.kerrier.koms.edi.api.wms.model.disney.SE"
+		createOnElement="${ediItem}/se">
+		<jb:value property="numberOfIncludedSegment" data="#/number-of-included-segment" />
+		<jb:value property="transactionSetControlNumber" data="#/transaction-set-control-number" />
+	</jb:bean>
+
+	<jb:bean beanId="ge" class="com.kerrier.koms.edi.api.wms.model.disney.GE"
+		createOnElement="${edi204}/ge">
+		<jb:value property="totalTransactionNumber" data="#/total-transaction-number" />
+		<jb:value property="groupControlNumber" data="#/group-control-number" />
+	</jb:bean>
+
+	<jb:bean beanId="iea" class="com.kerrier.koms.edi.api.wms.model.disney.IEA"
+		createOnElement="${edi204}/iea">
+		<jb:value property="groupNumber" data="#/group-number" />
+		<jb:value property="interchangeControlNumebr" data="#/interchange-control-numebr" />
+	</jb:bean>
+
+</smooks-resource-list>
